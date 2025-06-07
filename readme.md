@@ -28,7 +28,7 @@ cd Makefile/CMx      # Replace x with 7 or 4
 make
 ```
 
-To flash the binary, use your preferred method (e.g., OpenOCD or STM32CubeProgrammer).
+To flash the binary, use your preferred method (e.g., OpenOCD or STM32CubeProgrammer) or run each `flash_cmx.sh` bash script provided.
 
 ## Toolchain Installation (Linux)
 
