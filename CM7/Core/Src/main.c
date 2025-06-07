@@ -140,6 +140,7 @@ Error_Handler();
   while (1)
   {
     HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
+    HAL_Delay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
