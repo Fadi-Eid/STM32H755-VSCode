@@ -1,0 +1,15 @@
+{
+  "name": "STM32H755 Dev (Ubuntu 22.04)",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "stm32h755-dev",
+  "workspaceFolder": "/home/devuser/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  }
+}

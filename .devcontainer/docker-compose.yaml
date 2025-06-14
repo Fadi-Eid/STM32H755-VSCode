@@ -1,0 +1,13 @@
+services:
+  stm32h755-dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: stm32h755-container
+    command: sleep infinity  # keeps the container alive
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # If you want graphics, enter the following command on the host: xhost +local:docker
+                                         # To remove: xhost -local:docker
+      - ../:/home/devuser/workspace
