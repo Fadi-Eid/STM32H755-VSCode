@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 ../../CM4/Core/Src/main.c \
+../../CM7/Core/Src/gpio.c \
 ../../CM4/Core/Src/stm32h7xx_it.c \
 ../../CM4/Core/Src/stm32h7xx_hal_msp.c \
 ../../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
