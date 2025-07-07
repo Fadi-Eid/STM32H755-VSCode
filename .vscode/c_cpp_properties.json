@@ -27,7 +27,7 @@
         {
             "name": "STM32H755-CM4",
             "includePath": [
-                "${workspaceFolder}/Drivers/**",
+                "${workspaceFolder}//Drivers/**",
                 "${workspaceFolder}/CM4/**"
             ],
             "defines": [

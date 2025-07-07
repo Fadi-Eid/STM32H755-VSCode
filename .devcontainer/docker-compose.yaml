@@ -3,8 +3,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: stm32h755-container
+    container_name: stm32h755-container-uart-vcp
     command: sleep infinity
+    network_mode: host
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
