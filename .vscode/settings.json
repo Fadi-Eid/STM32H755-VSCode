@@ -12,5 +12,6 @@
         "system_stm32h7xx.h": "c",
         "stm32h7xx_hal_gpio.h": "c"
     },
-    "cortex-debug.gdbPath": "/usr/bin/gdb-multiarch"
+    "cortex-debug.gdbPath": "/usr/bin/gdb-multiarch",
+    "cortex-debug.variableUseNaturalFormat": false
 }

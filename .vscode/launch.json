@@ -1,4 +1,4 @@
-// From the host, run: $ sudo openocd -f interface/stlink.cfg -f target/stm32h7x.cfg
+// In a terminal run: $ sudo openocd -f interface/stlink.cfg -f target/stm32h7x.cfg
 {
     "version": "0.2.0",
     "configurations": [
