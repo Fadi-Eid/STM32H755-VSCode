@@ -41,6 +41,7 @@ extern UART_HandleTypeDef huart3;
 void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+int UART_DMA_TX(UART_HandleTypeDef* huart, const uint8_t *pData, uint16_t Size);
 
 /* USER CODE END Prototypes */
 

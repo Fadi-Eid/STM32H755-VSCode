@@ -165,4 +165,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
+int UART_DMA_TX(UART_HandleTypeDef* huart, const uint8_t *pData, uint16_t Size) {
+  SCB_CleanDCache_by_Addr((uint32_t*)pData, Size*32); 
+  HAL_UART_Transmit_DMA(huart, pData, Size);
+  return 0;
+}
+
 /* USER CODE END 1 */

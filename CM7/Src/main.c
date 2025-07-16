@@ -29,6 +29,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+#define ARRAY_SIZE 3000
 
 /* USER CODE END PTD */
 
@@ -139,10 +140,16 @@ Error_Handler();
 
   // this variable is stored in SRAM1 to be accessible by the DMA controller
   // https://community.st.com/t5/stm32-mcus/dma-is-not-working-on-stm32h7-devices/ta-p/49498
-  __attribute__((section(".dma_buffer"))) static uint8_t red[3]; // do not initialize statically
-  red[0] = 0xff;
-  red[1] = 0x0;
-  red[2] = 0x0;
+  __attribute__((section(".dma_buffer"))) static uint8_t red[ARRAY_SIZE]; // do not initialize statically
+  __attribute__((section(".dma_buffer"))) static uint8_t green[ARRAY_SIZE]; // do not initialize statically
+  __attribute__((section(".dma_buffer"))) static uint8_t blue[ARRAY_SIZE]; // do not initialize statically
+
+  // Initialize
+  for(int i=0; i<ARRAY_SIZE; i++) {
+    red[i] = 0xAA;
+    green[i] = 0xBB;
+    blue[i] = 0xCC;
+  }
 
   /* USER CODE END 2 */
 
@@ -151,10 +158,17 @@ Error_Handler();
   volatile HAL_StatusTypeDef dma_tx_status;
   while (1)
   {
-    dma_tx_status = HAL_UART_Transmit_DMA(&huart3, red, 3);
+    UART_DMA_TX(&huart3, red, ARRAY_SIZE);
     HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-    HAL_Delay(200);
+    HAL_Delay(500);
 
+    UART_DMA_TX(&huart3, green, ARRAY_SIZE);
+    HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
+    HAL_Delay(500);
+
+    UART_DMA_TX(&huart3, blue, ARRAY_SIZE);
+    HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
+    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -249,11 +263,11 @@ void MPU_Config(void)
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
 
-  // SRAM1 region set to non-cacheable for DMA use
+  // SRAM3 region set to non-cacheable for DMA use
   MPU_InitStruct.Enable = MPU_REGION_ENABLE;
   MPU_InitStruct.Number = MPU_REGION_NUMBER1;
-  MPU_InitStruct.BaseAddress = 0x30000000; // address of your .dma_buffer
-  MPU_InitStruct.Size = MPU_REGION_SIZE_128KB;
+  MPU_InitStruct.BaseAddress = 0x30040000; // address of the .dma_buffer (SRAM3)
+  MPU_InitStruct.Size = MPU_REGION_SIZE_32KB;
   MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
   MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
