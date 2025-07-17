@@ -230,7 +230,7 @@ void USART3_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
-	// HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
+	HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
