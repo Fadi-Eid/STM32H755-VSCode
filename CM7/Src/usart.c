@@ -166,7 +166,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 /* USER CODE BEGIN 1 */
 
 int UART_DMA_TX(UART_HandleTypeDef* huart, const uint8_t *pData, uint16_t Size) {
-  SCB_CleanDCache_by_Addr((uint32_t*)pData, Size*32); 
+  while (huart->gState != HAL_UART_STATE_READY); // wait for the previous transfer to finish
+  uint32_t addr = (uint32_t)pData & ~0x1F; // round to nearest multiple of 32
+  uint32_t len  = (((uint32_t)pData + Size + 31) & ~0x1F) - addr;
+  SCB_CleanDCache_by_Addr((uint32_t*)addr, len); // move data in D-Cache to SRAM2
   HAL_UART_Transmit_DMA(huart, pData, Size);
   return 0;
 }

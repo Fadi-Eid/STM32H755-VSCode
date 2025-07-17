@@ -29,7 +29,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-#define ARRAY_SIZE 3000
+#define ARRAY_SIZE 6000
 
 /* USER CODE END PTD */
 
@@ -146,9 +146,9 @@ Error_Handler();
 
   // Initialize
   for(int i=0; i<ARRAY_SIZE; i++) {
-    red[i] = 0xAA;
+    red[i]   = 0xAA;
     green[i] = 0xBB;
-    blue[i] = 0xCC;
+    blue[i]  = 0xCC;
   }
 
   /* USER CODE END 2 */
@@ -160,15 +160,12 @@ Error_Handler();
   {
     UART_DMA_TX(&huart3, red, ARRAY_SIZE);
     HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-    HAL_Delay(500);
 
     UART_DMA_TX(&huart3, green, ARRAY_SIZE);
     HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-    HAL_Delay(500);
 
     UART_DMA_TX(&huart3, blue, ARRAY_SIZE);
     HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
